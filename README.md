@@ -3,6 +3,20 @@ Community envoy gateway
 
 Gateway for the image builder community service.
 
+### Run the example
+
+To run envoy:
+```
+docker build -t envoy-gateway -f ./distribution/Dockerfile .
+docker run --net=host -v $PWD/example:/app -it envoy-gateway envoy -c /app/config.yaml
+```
+
+To try it out:
+```
+AT=$(cat example/auth/access-token)
+curl -H "authorization: Bearer $AT" localhost:10000/
+```
+
 ### Project
 
  * **Website**: <https://www.osbuild.org>

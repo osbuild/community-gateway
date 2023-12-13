@@ -1,0 +1,11 @@
+{
+  "keys": [
+    {
+      "kid": "key-id",
+      "kty": "RSA",
+      "alg": "RS256",
+      "n": "xQ-U7iEDi1RF3H3rYepCeAoNCnzt2dXh1h-1VPJyNA63-Dsa2l4y5q9nZfbiCkqCtMoy0SR2z3b7HFnVyTQ0oyThC6bFRIIRL9KeYjDspn0xW1HErf8AWA_EuHGTUS1K5Ye5RltmZViHrcyNwuMTyGvQHye55PpFSKAep3cm8YyBM1WcOWDX4mmQ7aLDeEcUWREa3WixW148gnCOd2n3AptbLjxHc7CDyfRYdx30DSRPyyvoekUIJHcGdSjYNcbuPwW8o6jplMdTr2EfDrMlDv_cr2-f3SzvzjTsCRh9osJEj0wlZynkXVwzOFOVfR53YOqGJ7Kv1ijxBC5q-t41wcVeZdaU0t1qXcEnCcs4lFhFlZlnwPE7X1-UpOI-tw869s6Mype1An9QHQx1A7pDAPFX5gEWd5F15UyLPGWClInxkHLImLa4XmKlFSmZxxCe9p-cep-8gBhScGjofVB8JsG6T_H0E__8Crh3flepuFgfwxQkLuLiKlt3zEj414tyqdhjRLDQ9GpoFW-oL5G3MjZE1MgsMbMTNQL5MKyumYMsCvkTIEpnWNHFYb-1WXnqfFiHZP095THaCIMPQb6yz9kumEl2srv8Ti7U84jOd0BIvXM3V04gnBFdEakELqSaJ7YxLa4vOykDVPs0lhaIGi_dy3D-blonZLB9jZx1qvc",
+      "e": "AQAB"
+    }
+  ]
+}
