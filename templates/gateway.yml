@@ -179,6 +179,47 @@ objects:
     labels:
       app: community-gateway
 
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: community-gateway-metrics
+    labels:
+      app: community-gateway
+      port: metrics
+    annotations:
+      description: Exposes and load balances the account manager Envoy metrics
+      qontract.recycle: "true"
+      qontract.ignore_reconcile_time: "true"
+  spec:
+    selector:
+      app: community-gateway
+    ports:
+      - port: 9000
+        targetPort: 9000
+        name: metrics
+
+# TODO add these when adding the ingress cluster & listener
+# - kind: Service
+#   apiVersion: v1
+#   metadata:
+#     name: community-gateway-ingress
+#     labels:
+#       app: community-gateway
+#       port: ingress
+#     annotations:
+#       description: Exposes and load balances the account manager Envoy
+#       # this annotation causes the secret to be created in the namespace
+#       service.alpha.openshift.io/serving-cert-secret-name: tls
+#       qontract.recycle: "true"
+#       qontract.ignore_reconcile_time: "true"
+#   spec:
+#     selector:
+#       app: community-gateway
+#     ports:
+#       - port: 10000
+#         targetPort: 10000
+#         protocol: TCP
+
 parameters:
 - description: community-gateway image name
   name: IMAGE_NAME
