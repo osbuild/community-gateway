@@ -172,6 +172,13 @@ objects:
           emptyDir:
             medium: Memory
 
+- kind: ServiceAccount
+  apiVersion: v1
+  metadata:
+    name: community-gateway-sa
+    labels:
+      app: community-gateway
+
 parameters:
 - description: community-gateway image name
   name: IMAGE_NAME
