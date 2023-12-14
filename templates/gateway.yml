@@ -76,3 +76,123 @@ objects:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    labels:
+      service: community-gateway
+    name:  community-gateway
+
+  spec:
+    replicas: ${{REPLICAS}}
+    selector:
+      matchLabels:
+        app: community-gateway
+    strategy:
+      # Update pod 1 at a time
+      type: RollingUpdate
+      rollingUpdate:
+        # Create at most 0 extra pod over .spec.replicas
+        maxSurge: 0
+        # At all times there should be .spec.replicas - 1 available
+        maxUnavailable: 1
+
+    template:
+      metadata:
+        labels:
+          app: community-gateway
+      spec:
+        serviceAccountName: community-gateway-sa
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: community-gateway
+                topologyKey: kubernetes.io/hostname
+        containers:
+        - name: community-gateway
+          image: "${IMAGE_NAME}:${IMAGE_TAG}"
+          command:
+          - /usr/bin/envoy
+          - --config-path
+          - /configs/envoy/config.yaml
+          ports:
+          - name: metrics
+            protocol: TCP
+            containerPort: 9000
+          # TODO add these when adding the ingress cluster & listener
+          # - name: ingress
+          #   protocol: TCP
+          #   containerPort: 10000
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 10
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 10
+            timeoutSeconds: 1
+          resources:
+            requests:
+              cpu: "${CPU_REQUEST}"
+              memory: "${MEMORY_REQUEST}"
+            limits:
+              cpu: "${CPU_LIMIT}"
+              memory: "${MEMORY_LIMIT}"
+          volumeMounts:
+          # TODO add these when adding the ingress cluster & listener
+          # - name: tls
+          #   mountPath: /secrets/tls
+          - name: envoy
+            mountPath: /configs/envoy
+          - name: sockets
+            mountPath: /sockets
+        volumes:
+        # - name: tls
+        #   secret:
+        #     secretName: tls
+        - name: envoy
+          configMap:
+            name: community-gateway-config
+        - name: sockets
+          emptyDir:
+            medium: Memory
+
+parameters:
+- description: community-gateway image name
+  name: IMAGE_NAME
+  value: quay.io/cloudservices/community-gateway
+  required: true
+- description: community-gateway tag, will be set by the deployment pipeline
+  name: IMAGE_TAG
+  required: true
+- description: number of pods to spin up, minimum 3
+  name: REPLICAS
+  value: "3"
+  required: true
+- name: CPU_REQUEST
+  description: CPU request per container
+  value: "200m"
+- name: CPU_LIMIT
+  description: CPU limit per container
+  value: "1"
+- name: MEMORY_REQUEST
+  description: Memory request per container
+  value: "128Mi"
+- name: MEMORY_LIMIT
+  description: Memory limit per container
+  value: "512Mi"
