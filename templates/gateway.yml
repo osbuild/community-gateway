@@ -120,10 +120,10 @@ objects:
                         cluster: ext_fedora_auth
                         timeout: 2s
                         failure_mode_allow: false
-                    authorization_response:
-                      allowed_upstream_headers:
-                        patterns:
-                        - exact: x-fedora-identity
+                      authorization_response:
+                        allowed_upstream_headers:
+                          patterns:
+                          - exact: x-fedora-identity
 
                 - name: envoy.filters.http.router
                   typed_config:
