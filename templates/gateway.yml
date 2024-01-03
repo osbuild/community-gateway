@@ -119,7 +119,6 @@ objects:
                         uri: 127.0.0.1:5556
                         cluster: ext_fedora_auth
                         timeout: 2s
-                        failure_mode_allow: false
                       authorization_response:
                         allowed_upstream_headers:
                           patterns:
