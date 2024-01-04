@@ -82,5 +82,5 @@ func main() {
 	})
 
 	logrus.Info("Listening")
-	logrus.Fatal(http.ListenAndServe("127.0.0.1:5556", nil))
+	logrus.Fatal(http.ListenAndServe(":5556", nil))
 }
