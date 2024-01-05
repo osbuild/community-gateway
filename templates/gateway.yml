@@ -274,10 +274,6 @@ objects:
     labels:
       app: community-gateway
       port: metrics
-    annotations:
-      description: Exposes and load balances the account manager Envoy metrics
-      qontract.recycle: "true"
-      qontract.ignore_reconcile_time: "true"
   spec:
     selector:
       app: community-gateway
