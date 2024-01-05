@@ -176,10 +176,9 @@ objects:
           - name: metrics
             protocol: TCP
             containerPort: 9000
-          # TODO add these when adding the ingress cluster & listener
-          # - name: ingress
-          #   protocol: TCP
-          #   containerPort: 10000
+          - name: ingress
+            protocol: TCP
+            containerPort: 10000
           livenessProbe:
             httpGet:
               path: /ready
@@ -206,9 +205,6 @@ objects:
               cpu: "${CPU_LIMIT}"
               memory: "${MEMORY_LIMIT}"
           volumeMounts:
-          # TODO add these when adding the ingress cluster & listener
-          # - name: tls
-          #   mountPath: /secrets/tls
           - name: envoy
             mountPath: /configs/envoy
           - name: sockets
