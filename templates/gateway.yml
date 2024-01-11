@@ -53,6 +53,19 @@ objects:
                       address: localhost
                       port_value: 5556
 
+        - name: image-builder
+          connect_timeout: 2s
+          type: STRICT_DNS
+          load_assignment:
+            cluster_name: image-builder
+            endpoints:
+            - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: image-builder.image-builder-community-stage.svc.cluster.local
+                      port_value: 8080
+
         ### Listeners ###
         listeners:
         # The admin listener isn't exposed, and is used only by the service monitor to scrape metrics.
@@ -108,7 +121,18 @@ objects:
                 stat_prefix: ingress
                 route_config:
                   name: ingress
-                  virtual_hosts: []
+                  virtual_hosts:
+                  - name: api
+                    domains:
+                    - "*"
+                    routes:
+                    - match:
+                        prefix: /api/image-builder
+                      route:
+                        cluster: image-builder
+                        auto_host_rewrite: true
+                        timeout: 30s
+
 
                 http_filters:
                 - name: envoy.filters.http.ext_authz
