@@ -63,7 +63,7 @@ func main() {
 			return
 		}
 
-		idHeader := identity.Header{
+		idHeader := identity.Identity{
 			User: userInfo.Subject,
 		}
 		idHB64, err := idHeader.Base64()
@@ -73,7 +73,7 @@ func main() {
 			return
 		}
 
-		w.Header().Add("x-fedora-identity", idHB64)
+		w.Header().Add(identity.FedoraIDHeader, idHB64)
 		w.WriteHeader(http.StatusOK)
 	})
 
