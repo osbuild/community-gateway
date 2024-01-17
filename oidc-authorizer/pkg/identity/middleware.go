@@ -27,6 +27,11 @@ func Extractor(next http.Handler) http.Handler {
 			return
 		}
 
+		if identity.User == "" {
+			http.Error(w, "Identity does not contain a user", http.StatusBadRequest)
+			return
+		}
+
 		ctx := context.WithValue(r.Context(), IDHeaderKey, identity)
 		ctx = context.WithValue(ctx, RawHeaderKey, rawHeaders[0])
 		next.ServeHTTP(w, r.WithContext(ctx))

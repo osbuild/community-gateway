@@ -26,6 +26,11 @@ func TestExtractor(t *testing.T) {
 	require.Equal(t, 400, resp.Code)
 
 	resp = httptest.NewRecorder()
+	req.Header[FedoraIDHeader] = []string{"	eyJ1c2VyIjoiIn0K"}
+	Extractor(testHandler).ServeHTTP(resp, req)
+	require.Equal(t, 400, resp.Code)
+
+	resp = httptest.NewRecorder()
 	req.Header[FedoraIDHeader] = []string{"eyJ1c2VyIjoidXNlciJ9"}
 	Extractor(testHandler).ServeHTTP(resp, req)
 	require.Equal(t, 200, resp.Code)
