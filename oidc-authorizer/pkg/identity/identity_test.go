@@ -7,7 +7,7 @@ import (
 )
 
 func TestEncodeDecode(t *testing.T) {
-	h := Header{
+	h := Identity{
 		User: "user",
 	}
 

@@ -5,11 +5,13 @@ import (
 	"encoding/json"
 )
 
-type Header struct {
+const FedoraIDHeader = "x-fedora-identity"
+
+type Identity struct {
 	User string `json:"user"`
 }
 
-func (h *Header) Base64() (string, error) {
+func (h *Identity) Base64() (string, error) {
 	data, err := json.Marshal(h)
 	if err != nil {
 		return "", err
@@ -18,13 +20,13 @@ func (h *Header) Base64() (string, error) {
 	return base64.StdEncoding.EncodeToString(data), nil
 }
 
-func FromBase64(data string) (*Header, error) {
+func FromBase64(data string) (*Identity, error) {
 	jsonBytes, err := base64.StdEncoding.DecodeString(data)
 	if err != nil {
 		return nil, err
 	}
 
-	var header Header
+	var header Identity
 	err = json.Unmarshal(jsonBytes, &header)
 	if err != nil {
 		return nil, err
