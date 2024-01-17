@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-const FedoraIDHeader = "x-fedora-identity"
+const FedoraIDHeader = "X-Fedora-Identity"
 
 type Identity struct {
 	User string `json:"user"`
