@@ -211,6 +211,7 @@ objects:
         - name: community-gateway
           image: "${ENVOYPROXY_IMAGE_NAME}:${ENVOYPROXY_IMAGE_TAG}"
           command:
+          - envoy
           - --config-path
           - /configs/envoy/config.yaml
           ports:
