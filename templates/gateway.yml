@@ -125,6 +125,10 @@ objects:
                   - name: api
                     domains:
                     - "*"
+                    # Remove these headers in case someone adds them to the response
+                    response_headers_to_remove:
+                    - x-rh-identity
+                    - x-fedora-identity
                     routes:
                     - match:
                         prefix: /api/image-builder
@@ -160,15 +164,6 @@ objects:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
-
-                # Remove these headers in case someone adds them to the response
-                - name: envoy.filters.http.header_mutation
-                  typed_config:
-                    "@type": type.googleapis.com/envoy.extensions.filters.http.header_mutation.v3.HeaderMutation
-                    mutations:
-                      response_mutations:
-                      - remove: x-fedora-identity
-                      - remove: x-rh-identity
 
 
 - apiVersion: apps/v1
