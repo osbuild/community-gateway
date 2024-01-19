@@ -7,8 +7,7 @@ Gateway for the image builder community service.
 
 To run envoy:
 ```
-docker build -t envoy-gateway -f ./distribution/Dockerfile .
-docker run --net=host -v $PWD/example:/app -it envoy-gateway envoy -c /app/config.yaml
+docker run --net=host -v $PWD/example:/app -it envoyproxy/envoy:distroless-v1.29-latest -c /app/config.yaml
 ```
 
 To try it out:
