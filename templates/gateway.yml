@@ -131,7 +131,7 @@ objects:
                     - x-fedora-identity
                     domains:
                     - "*"
-                    routes: []
+                    routes:
                     - match:
                         prefix: /api/image-builder
                       route:
