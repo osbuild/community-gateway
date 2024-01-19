@@ -288,9 +288,6 @@ objects:
               cpu: "${AUTHORIZER_CPU_LIMIT}"
               memory: "${AUTHORIZER_MEMORY_LIMIT}"
         volumes:
-        # - name: tls
-        #   secret:
-        #     secretName: tls
         - name: envoy
           configMap:
             name: community-gateway-config
