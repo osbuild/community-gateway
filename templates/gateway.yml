@@ -125,7 +125,7 @@ objects:
                   - name: api
                     domains:
                     - "*"
-                    routes:
+                    routes: []
                     # - match:
                     #     prefix: /api/image-builder
                     #   route:
