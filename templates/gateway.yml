@@ -126,12 +126,12 @@ objects:
                     domains:
                     - "*"
                     routes:
-                    - match:
-                        prefix: /api/image-builder
-                      route:
-                        cluster: image-builder
-                        auto_host_rewrite: true
-                        timeout: 30s
+                    # - match:
+                    #     prefix: /api/image-builder
+                    #   route:
+                    #     cluster: image-builder
+                    #     auto_host_rewrite: true
+                    #     timeout: 30s
 
 
                 http_filters:
