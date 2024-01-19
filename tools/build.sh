@@ -2,7 +2,7 @@
 # AppSRE runs this script to build the container and push it to Quay.
 set -exv
 
-IMAGE_NAME="quay.io/cloudservices/oidc-authorizer"
+IMAGE_NAME="quay.io/cloudservices/community-gateway"
 IMAGE_TAG=$(git rev-parse --short=7 HEAD)
 
 if [[ -z "$QUAY_USER" || -z "$QUAY_TOKEN" ]]; then
