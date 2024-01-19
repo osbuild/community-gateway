@@ -63,8 +63,8 @@ objects:
               - endpoint:
                   address:
                     socket_address:
-                      address: image-builder.image-builder-community-stage.svc.cluster.local
-                      port_value: 8080
+                      address: image-builder-community-service.image-builder-community-stage.svc.cluster.local
+                      port_value: 8000
 
         ### Listeners ###
         listeners:
