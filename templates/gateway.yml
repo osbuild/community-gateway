@@ -304,6 +304,8 @@ objects:
     name: community-gateway-sa
     labels:
       app: community-gateway
+  imagePullSecrets:
+  - name: quay.io
 
 - kind: Service
   apiVersion: v1
