@@ -123,12 +123,6 @@ objects:
                   name: ingress
                   virtual_hosts:
                   - name: api
-                    request_headers_to_remove:
-                    - x-rh-identity
-                    response_headers_to_remove:
-                    - x-rh-identity
-                    internal_only_headers:
-                    - x-fedora-identity
                     domains:
                     - "*"
                     routes:
@@ -141,6 +135,15 @@ objects:
 
 
                 http_filters:
+                # Remove any identity headers cheeky clients might try to add
+                - name: envoy.filters.http.header_mutation
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.header_mutation.v3.HeaderMutation
+                    mutations:
+                      request_mutations:
+                      - remove: x-rh-identity
+                      - remove: x-fedora-identity
+
                 - name: envoy.filters.http.ext_authz
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz
@@ -157,6 +160,15 @@ objects:
                 - name: envoy.filters.http.router
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+
+                # Remove these headers in case someone adds them to the response
+                - name: envoy.filters.http.header_mutation
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.header_mutation.v3.HeaderMutation
+                    mutations:
+                      response_mutations:
+                      - remove: x-fedora-identity
+                      - remove: x-rh-identity
 
 
 - apiVersion: apps/v1
