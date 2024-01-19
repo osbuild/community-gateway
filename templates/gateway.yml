@@ -197,7 +197,7 @@ objects:
                 topologyKey: kubernetes.io/hostname
         containers:
         - name: community-gateway
-          image: "${IMAGE_NAME}:${IMAGE_TAG}"
+          image: "${ENVOYPROXY_IMAGE_NAME}:${ENVOYPROXY_IMAGE_TAG}"
           command:
           - /usr/bin/envoy
           - --config-path
@@ -240,7 +240,7 @@ objects:
           - name: sockets
             mountPath: /sockets
         - name: oidc-authorizer
-          image: "${IMAGE_NAME}:${IMAGE_TAG}"
+          image: "${OIDC_AUTHORIZER_IMAGE_NAME}:${IMAGE_TAG}"
           command:
           - /oidc-authorizer
           ports:
@@ -324,13 +324,20 @@ objects:
         protocol: TCP
 
 parameters:
-- description: community-gateway image name
-  name: IMAGE_NAME
-  value: quay.io/cloudservices/community-gateway
+- description: oidc authorizer image name
+  name: OIDC_AUTHORIZER_IMAGE_NAME
+  value: quay.io/cloudservices/oidc-authorizer
   required: true
-- description: community-gateway tag, will be set by the deployment pipeline
+- description: oidc authorizer tag, will be set by the deployment pipeline
   name: IMAGE_TAG
   required: true
+- description: envoy proxy image name
+  name: ENVOYPROXY_IMAGE_NAME
+  value: quay.io/app-sre/envoyproxy
+  required: true
+- description: envoy proxy tag
+  name: ENVOYPROXY_IMAGE_TAG
+  value: "v1.28.0"
 - description: number of pods to spin up, minimum 3
   name: REPLICAS
   value: "3"
