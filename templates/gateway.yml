@@ -123,15 +123,21 @@ objects:
                   name: ingress
                   virtual_hosts:
                   - name: api
+                    request_headers_to_remove:
+                    - x-rh-identity
+                    - x-fedora-identity
+                    response_headers_to_remove:
+                    - x-rh-identity
+                    - x-fedora-identity
                     domains:
                     - "*"
                     routes: []
-                    # - match:
-                    #     prefix: /api/image-builder
-                    #   route:
-                    #     cluster: image-builder
-                    #     auto_host_rewrite: true
-                    #     timeout: 30s
+                    - match:
+                        prefix: /api/image-builder
+                      route:
+                        cluster: image-builder
+                        auto_host_rewrite: true
+                        timeout: 30s
 
 
                 http_filters:
