@@ -125,9 +125,9 @@ objects:
                   - name: api
                     request_headers_to_remove:
                     - x-rh-identity
-                    - x-fedora-identity
                     response_headers_to_remove:
                     - x-rh-identity
+                    internal_only_headers:
                     - x-fedora-identity
                     domains:
                     - "*"
