@@ -147,7 +147,6 @@ objects:
                         prefix: /api/image-builder
                       route:
                         cluster: image-builder
-                        auto_host_rewrite: true
                         timeout: 30s
                 http_filters:
                 # Remove any identity headers cheeky clients might try to add
