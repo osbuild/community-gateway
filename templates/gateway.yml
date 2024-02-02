@@ -131,9 +131,9 @@ objects:
                   typed_config:
                     "@type": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog
                     path: /dev/stdout
-                stat_prefix: ingress
+                stat_prefix: api-listener
                 route_config:
-                  name: ingress
+                  name: api-listener
                   virtual_hosts:
                   - name: api
                     domains:
@@ -216,6 +216,10 @@ objects:
                         https_redirect: true
                         host_redirect: osbuild.org
                         path_redirect: /docs/service/fedora-console
+
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
 
 - apiVersion: apps/v1
