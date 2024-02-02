@@ -136,12 +136,7 @@ objects:
                         cluster: image-builder
                         auto_host_rewrite: true
                         timeout: 30s
-                    - match:
-                        prefix: /
-                      redirect:
-                        https_redirect: true
-                        host_redirect: osbuild.org
-                        path_redirect: /docs/service/fedora-console
+
 
                 http_filters:
                 # Remove any identity headers cheeky clients might try to add
