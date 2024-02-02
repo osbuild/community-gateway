@@ -31,11 +31,7 @@ func main() {
 		logrus.Info(r.Header)
 		bearerToken := r.Header.Get("Authorization")
 		if bearerToken == "" {
-			if conf.NTRedirect != "" {
-				http.Redirect(w, r, conf.NTRedirect, http.StatusSeeOther)
-			} else {
-				http.Error(w, "Authorization header is empty", http.StatusBadRequest)
-			}
+			http.Redirect(w, r, conf.NTRedirect, http.StatusSeeOther)
 			return
 		}
 
