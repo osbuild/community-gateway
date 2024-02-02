@@ -375,3 +375,6 @@ parameters:
 - name: OIDC_PROVIDER
   description: Openid connect provider (issuer)
   value: "https://id.stg.fedoraproject.org/openidc/"
+- name: NO_TOKEN_REDIRECT
+  description: URL to redirect to if no valid auth token was supplied
+  value: "https://osbuild.org/docs/service/fedora-console"
