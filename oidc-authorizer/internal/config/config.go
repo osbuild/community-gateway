@@ -11,6 +11,7 @@ type Config struct {
 	ClientID     string `env:"CLIENT_ID"`
 	ClientSecret string `env:"CLIENT_SECRET"`
 	Scopes       string `env:"SCOPES"`
+	NTRedirect   string `env:"NO_TOKEN_REDIRECT"`
 }
 
 var ErrMissingEnvTag = errors.New("missing 'env' tag in config field")
