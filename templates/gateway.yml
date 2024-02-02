@@ -275,6 +275,8 @@ objects:
           env:
           - name: PROVIDER
             value: ${OIDC_PROVIDER}
+          - name: NO_TOKEN_REDIRECT
+            value: ${NO_TOKEN_REDIRECT}
           resources:
             requests:
               cpu: "${AUTHORIZER_CPU_REQUEST}"
