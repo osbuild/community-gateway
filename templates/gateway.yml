@@ -215,10 +215,10 @@ objects:
                         https_redirect: true
                         host_redirect: osbuild.org
                         path_redirect: /docs/service/fedora-console
-
-            - name: envoy.filters.http.router
-              typed_config:
-                "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+                http_filters:
+                - name: envoy.filters.http.router
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
 
 - apiVersion: apps/v1
