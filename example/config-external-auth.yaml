@@ -105,9 +105,19 @@ static_resources:
                   - "*"
               routes:
               - match:
-                  prefix: /
+                  prefix: /system
                 route:
                   cluster: cockpit
+              - match:
+                  prefix: /
+                typed_per_filter_config:
+                  envoy.filters.http.ext_authz:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+                    disabled: true
+                redirect:
+                  https_redirect: true
+                  host_redirect: osbuild.org
+                  path_redirect: /
 
           http_filters:
           - name: envoy.filters.http.ext_authz
