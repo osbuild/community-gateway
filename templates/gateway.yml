@@ -145,7 +145,7 @@ objects:
                       redirect:
                         https_redirect: true
                         host_redirect: osbuild.org
-                        path_redirect: /
+                        path_redirect: /docs/service/fedora-console/
 
                 http_filters:
                 # Remove any identity headers cheeky clients might try to add
