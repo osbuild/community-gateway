@@ -136,7 +136,16 @@ objects:
                         cluster: image-builder
                         auto_host_rewrite: true
                         timeout: 30s
-
+                    - match:
+                        prefix: /
+                      typed_per_filter_config:
+                        envoy.filters.http.ext_authz:
+                          "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+                          disabled: true
+                      redirect:
+                        https_redirect: true
+                        host_redirect: osbuild.org
+                        path_redirect: /
 
                 http_filters:
                 # Remove any identity headers cheeky clients might try to add
