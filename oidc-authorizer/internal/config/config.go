@@ -7,10 +7,11 @@ import (
 )
 
 type Config struct {
-	Provider     string `env:"PROVIDER"`
-	ClientID     string `env:"CLIENT_ID"`
-	ClientSecret string `env:"CLIENT_SECRET"`
-	Scopes       string `env:"SCOPES"`
+	Provider      string `env:"PROVIDER"`
+	ClientID      string `env:"CLIENT_ID"`
+	ClientSecret  string `env:"CLIENT_SECRET"`
+	IntrospectURL string `env:"TOKEN_INTROSPECTION_URL"`
+	Scopes        string `env:"SCOPES"`
 }
 
 var ErrMissingEnvTag = errors.New("missing 'env' tag in config field")
