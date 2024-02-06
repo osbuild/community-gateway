@@ -284,6 +284,21 @@ objects:
           env:
           - name: PROVIDER
             value: ${OIDC_PROVIDER}
+          - name: TOKEN_INTROSPECTION_URL
+            valueFrom:
+              secretKeyRef:
+                key: token_introspection_url
+                name: id-fedora-client-creds
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                key: client_id
+                name: id-fedora-client-creds
+          - name: CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: client_secret
+                name: id-fedora-client-creds
           resources:
             requests:
               cpu: "${AUTHORIZER_CPU_REQUEST}"
