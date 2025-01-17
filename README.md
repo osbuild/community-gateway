@@ -19,8 +19,10 @@ curl -H "authorization: Bearer $AT" localhost:10000/
 ### Project
 
  * **Website**: <https://www.osbuild.org>
- * **matrix**: https://matrix.to/#/#image-builder:fedoraproject.org
-*  **Mailing List**: image-builder@redhat.com
+ * **Bug Tracker**: <https://github.com/osbuild/community-gateway/issues>
+ * **Discussions**: <https://github.com/orgs/osbuild/discussions>
+ * **Matrix**: [#image-builder on fedoraproject.org](https://matrix.to/#/#image-builder:fedoraproject.org)
+ * **Changelog**: <https://github.com/osbuild/community-gateway/releases>
 
 #### Contributing
 
