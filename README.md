@@ -26,7 +26,7 @@ curl -H "authorization: Bearer $AT" localhost:10000/
 
 #### Contributing
 
-Please refer to the [developer guide](https://www.osbuild.org/guides/developer-guide/index.html) to learn about our workflow, code style and more.
+Please refer to the [developer guide](https://osbuild.org/docs/developer-guide/index) to learn about our workflow, code style and more.
 
 ### License:
 
